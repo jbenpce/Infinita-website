@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const email = 'contact@infinitaCM.com';
+
+const sections = [
+  {
+    label: 'Nature of Infinita',
+    body:
+      'Infinita Holdings LLC is a privately held capital platform. It is not a fund, a financial product company, or a registered investment adviser, and it does not accept outside capital.',
+  },
+  {
+    label: 'No offer or advice',
+    body:
+      'Nothing on this site constitutes an offer, solicitation, or recommendation to buy or sell any security or to enter into any transaction, nor does it constitute investment, legal, or tax advice. All information is provided for general informational purposes only.',
+  },
+  {
+    label: 'Privacy',
+    body:
+      'This site uses no advertising or tracking cookies and collects no personal information beyond what you choose to send by email. Correspondence is handled in confidence and is not shared with third parties except as required by law.',
+  },
+  {
+    label: 'Intellectual property',
+    body:
+      'The name, marks, text, and design of this site are the property of Infinita and may not be reproduced without permission.',
+  },
+];
+---
+
+<Layout
+  title="Legal & Disclosures — Infinita Holdings LLC"
+  description="Legal notices, disclosures, and privacy for Infinita Holdings LLC."
+>
+  <section class="page-hero section--dark">
+    <div class="container">
+      <p class="eyebrow">Legal &amp; Disclosures</p>
+      <h1>Plain terms.</h1>
+      <p class="lede">
+        The notices below govern the use of this site. They are written to be
+        read, not to obscure.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container legal">
+      {sections.map((s) => (
+        <article class="legal__row">
+          <p class="eyebrow">{s.label}</p>
+          <p class="legal__body">{s.body}</p>
+        </article>
+      ))}
+
+      <article class="legal__row">
+        <p class="eyebrow">Contact</p>
+        <p class="legal__body">
+          Questions regarding this notice may be directed to
+          {' '}<a href={`mailto:${email}`}>{email}</a>.
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero { padding-block: clamp(4.5rem, 11vw, 8rem); }
+
+  .legal {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .legal__row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    align-items: start;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .legal__row:last-child { border-bottom: 0; padding-bottom: 0; }
+  .legal__row .eyebrow { margin: 0; }
+  .legal__body { color: var(--muted); margin: 0; max-width: 60ch; }
+  .legal__body a { color: var(--paper); border-bottom: 1px solid var(--gold); }
+  .legal__body a:hover { color: var(--gold); }
+
+  @media (max-width: 820px) {
+    .legal__row { grid-template-columns: 1fr; gap: 0.75rem; }
+  }
+</style>
