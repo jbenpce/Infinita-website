@@ -1,14 +1,14 @@
 name: Deploy to GitHub Pages
 
 # Builds the Astro site and publishes it to GitHub Pages, served at the
-# custom domain https://infinita.one (see public/CNAME). The build runs in
+# custom domain https://genxalpha.xyz (see public/CNAME). The build runs in
 # production mode (root base) — not the github.io sub-path preview.
+#
+# IMPORTANT: manual dispatch only for now. This repository's GitHub Pages
+# currently serves infinita.one, so the genXalpha site must NOT auto-deploy
+# from here. Once this site is ported to its own repository, add its default
+# branch under `on.push.branches` to enable automatic deploys.
 on:
-  push:
-    branches:
-      - claude/practical-newton-pz3kvg
-      - claude/confident-tesla-ivc225
-      - claude/exciting-shannon-uivis0
   workflow_dispatch:
 
 # Permissions required for the deploy-pages action.

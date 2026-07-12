@@ -1,6 +1,6 @@
 ---
-// Base-aware paths so links work both at the root (infinita.one) and under
-// the GitHub Pages sub-path (/Infinita-website/). BASE_URL has a trailing slash.
+// Base-aware paths so links work both at the root (genxalpha.xyz) and under
+// the GitHub Pages sub-path preview. BASE_URL has a trailing slash.
 const rawBase = import.meta.env.BASE_URL;
 const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
 const withBase = (p: string) => `${base}${p}`.replace(/\/{2,}/g, '/');
@@ -12,13 +12,15 @@ const isActive = (href: string) => norm(href) === path;
 const links = [
   { href: withBase(''), label: 'Home' },
   { href: withBase('about'), label: 'About' },
-  { href: withBase('contact'), label: 'Contact' },
+  { href: withBase('writing'), label: 'Writing' },
 ];
 ---
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href={withBase('')} class="brand" aria-label="Infinita — home">Infinita</a>
+    <a href={withBase('')} class="brand" aria-label="genXalpha — home">
+      gen<span class="brand__x">X</span>alpha
+    </a>
 
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
     <label for="nav-toggle" class="nav-burger" aria-label="Toggle navigation">
@@ -35,6 +37,14 @@ const links = [
           {l.label}
         </a>
       ))}
+      <a
+        href="https://genxalpha.substack.com"
+        class="site-nav__link site-nav__link--external"
+        target="_blank"
+        rel="noopener"
+      >
+        Substack ↗
+      </a>
     </nav>
   </div>
 </header>
@@ -55,13 +65,17 @@ const links = [
     min-height: 4.75rem;
   }
   .brand {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    letter-spacing: 0.12em;
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     color: var(--paper);
-    text-transform: uppercase;
   }
-  .brand:hover { color: var(--gold); }
+  .brand:hover { color: var(--paper); }
+  .brand__x {
+    color: var(--orange);
+    font-weight: 700;
+  }
 
   .site-nav {
     display: flex;
@@ -80,8 +94,9 @@ const links = [
   .site-nav__link:hover { color: var(--paper); }
   .site-nav__link.is-active {
     color: var(--paper);
-    border-bottom-color: var(--gold);
+    border-bottom-color: var(--orange);
   }
+  .site-nav__link--external { color: var(--orange-dark); }
 
   /* Mobile menu (CSS-only) */
   .nav-toggle, .nav-burger { display: none; }

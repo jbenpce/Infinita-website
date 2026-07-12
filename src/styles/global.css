@@ -1,29 +1,28 @@
 /* ---------------------------------------------------------------------------
-   Infinita Holdings LLC — Design tokens & base styles
+   genXalpha — Design tokens & base styles
 
-   Brand: sovereign, disciplined, enduring. Governed, not promotional.
-   Palette mirrors infinita.one — ink black, warm goldenrod accent, muted greys.
-   Type: Libre Baskerville (serif headings) + Poppins (sans body).
+   Brand: sharp, generational, conviction-driven. Ideas across Gen X → Alpha,
+   in pursuit of alpha. Dark theme with a Bitcoin-orange accent.
+   Type: Space Grotesk (headings) + Inter (body).
 --------------------------------------------------------------------------- */
 
 :root {
-  /* Palette — fully dark: near-black + dark brown, with goldenrod accents. */
-  --ink: #100f0d;          /* page background, near-black with a brown undertone */
-  --ink-2: #15120f;        /* footer / slightly raised dark surface */
-  --surface: #2a1c12;      /* dark-brown alternating section surface */
-  --paper: #f1ede7;        /* warm off-white — used as foreground on dark */
-  --paper-pure: #2a1c12;   /* alias kept for existing rules → dark brown */
-  --gold: #daa520;         /* goldenrod accent */
-  --gold-dark: #b28109;    /* deeper gold */
-  --gold-deep: #996f08;
+  /* Palette — near-black with graphite surfaces and orange accents. */
+  --ink: #0b0c0e;          /* page background, near-black */
+  --ink-2: #101216;        /* footer / slightly raised dark surface */
+  --surface: #15181d;      /* alternating section surface */
+  --paper: #f2efe9;        /* warm off-white foreground */
+  --orange: #f7931a;       /* signature orange accent */
+  --orange-dark: #c9760f;  /* deeper orange, for small text on dark */
+  --orange-deep: #9d5c0b;
   --line: rgba(255, 255, 255, 0.10);   /* subtle hairline on dark */
   --line-dark: rgba(255, 255, 255, 0.12);
-  --muted: #9a948b;        /* secondary text */
-  --muted-dark: #8a847c;   /* dimmer secondary text */
+  --muted: #9aa0a8;        /* secondary text */
+  --muted-dark: #7f858d;   /* dimmer secondary text */
 
   /* Type */
-  --font-serif: "Libre Baskerville", Georgia, "Times New Roman", serif;
-  --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 
   /* Spacing rhythm */
   --space-section: clamp(4rem, 9vw, 8rem);
@@ -54,10 +53,10 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: 0.005em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   margin: 0 0 0.5em;
 }
 
@@ -68,7 +67,7 @@ h3 { font-size: clamp(1.15rem, 2.2vw, 1.4rem); }
 p { margin: 0 0 1.1em; }
 
 a {
-  color: var(--gold);
+  color: var(--orange);
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -92,7 +91,7 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: 0.28em;
   font-size: 0.72rem;
   font-weight: 600;
-  color: var(--gold-dark);
+  color: var(--orange-dark);
   margin: 0 0 1.25rem;
 }
 
@@ -100,7 +99,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   font-weight: 300;
   color: #e9e6e0;
-  max-width: 46ch;
+  max-width: 50ch;
   line-height: 1.6;
 }
 
@@ -111,7 +110,7 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: 0.34em;
   font-size: clamp(0.78rem, 1.6vw, 0.95rem);
   font-weight: 400;
-  color: var(--gold);
+  color: var(--orange);
   margin: 0;
 }
 
@@ -124,21 +123,21 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: 0.16em;
   text-transform: uppercase;
   padding: 0.95rem 2.1rem;
-  border: 1px solid var(--gold);
+  border: 1px solid var(--orange);
   color: var(--paper);
   background: transparent;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
-.btn:hover { background: var(--gold); color: var(--ink); }
+.btn:hover { background: var(--orange); color: var(--ink); }
 
-.btn--light {
-  border-color: var(--gold);
-  color: var(--paper);
+.btn--solid {
+  background: var(--orange);
+  color: var(--ink);
 }
-.btn--light:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.btn--solid:hover { background: var(--paper); border-color: var(--paper); }
 
-/* Dark section */
+/* Dark / surface section variants */
 .section--dark {
   background: var(--ink);
   color: var(--paper);
@@ -147,23 +146,30 @@ img { max-width: 100%; height: auto; display: block; }
 .section--dark h2,
 .section--dark h3 { color: var(--paper); }
 .section--dark .lede { color: #e6e6e6; }
-.section--dark a { color: var(--gold); }
+.section--dark a { color: var(--orange); }
 .section--dark a:hover { color: var(--paper); }
 
-.section--paper-pure { background: var(--paper-pure); }
+/* Buttons must keep their own colors inside dark sections — the
+   `.section--dark a` rule above would otherwise outspecify `.btn`. */
+.section--dark .btn { color: var(--paper); }
+.section--dark .btn:hover { color: var(--ink); }
+.section--dark .btn--solid { color: var(--ink); }
+.section--dark .btn--solid:hover { color: var(--ink); }
+
+.section--surface { background: var(--surface); }
 
 /* Decorative hairline rule */
 .rule {
   width: 3rem;
   height: 2px;
-  background: var(--gold);
+  background: var(--orange);
   border: 0;
   margin: 0 0 1.75rem;
 }
 
 /* Accessible focus */
 :focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--orange);
   outline-offset: 3px;
 }
 

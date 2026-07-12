@@ -8,22 +8,23 @@ const withBase = (p: string) => `${base}${p}`.replace(/\/{2,}/g, '/');
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
-      <span class="brand">Infinita</span>
-      <p class="site-footer__tagline">Sovereign · Disciplined · Enduring</p>
+      <span class="brand">gen<span class="brand__x">X</span>alpha</span>
+      <p class="site-footer__tagline">Unlocking potential across all generations</p>
     </div>
 
     <nav class="site-footer__nav" aria-label="Footer">
       <a href={withBase('')}>Home</a>
       <a href={withBase('about')}>About</a>
-      <a href={withBase('contact')}>Contact</a>
+      <a href={withBase('writing')}>Writing</a>
+      <a href="https://genxalpha.substack.com" target="_blank" rel="noopener">Substack ↗</a>
+      <a href={withBase('privacy-policy')}>Privacy Policy</a>
     </nav>
 
     <div class="site-footer__meta">
-      <p>&copy; {year} Infinita — a privately held capital platform.</p>
+      <p>&copy; {year} genXalpha. All rights reserved.</p>
       <p class="site-footer__disclaimer">
-        Infinita is not a fund nor a financial product company. This website is
-        for informational purposes only and does not constitute an offer,
-        solicitation, or investment advice.
+        Nothing on this website constitutes investment advice, an offer, or a
+        solicitation. Views expressed are the author's own. Do your own research.
       </p>
     </div>
   </div>
@@ -43,15 +44,15 @@ const withBase = (p: string) => `${base}${p}`.replace(/\/{2,}/g, '/');
     align-items: start;
   }
   .brand {
-    font-family: var(--font-serif);
-    font-size: 1.4rem;
-    letter-spacing: 0.12em;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
     color: var(--paper);
-    text-transform: uppercase;
   }
+  .brand__x { color: var(--orange); font-weight: 700; }
   .site-footer__tagline {
     margin: 0.75rem 0 0;
-    color: var(--gold);
+    color: var(--orange);
     font-family: var(--font-sans);
     text-transform: uppercase;
     letter-spacing: 0.24em;
@@ -70,7 +71,7 @@ const withBase = (p: string) => `${base}${p}`.replace(/\/{2,}/g, '/');
     font-size: 0.78rem;
     font-weight: 500;
   }
-  .site-footer__nav a:hover { color: var(--gold); }
+  .site-footer__nav a:hover { color: var(--orange); }
   .site-footer__meta {
     grid-column: 1 / -1;
     border-top: 1px solid var(--line-dark);
